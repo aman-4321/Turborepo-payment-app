@@ -9,7 +9,7 @@ const prismaclient = new PrismaClient();
 export const merchantRouter = Router();
 
 const signupBody = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   name: z.string(),
   password: z.string().min(6),
 });
@@ -21,7 +21,7 @@ merchantRouter.post("/signup", async (req, res) => {
       message: "Invalid input",
     });
   }
-  const { username, password, name } = data;
+  const { email, password, name } = data;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -29,7 +29,7 @@ merchantRouter.post("/signup", async (req, res) => {
     await prismaclient.$transaction(async (tx) => {
       const merchant = await tx.merchant.create({
         data: {
-          username,
+          email,
           password: hashedPassword,
           name,
         },
@@ -52,7 +52,7 @@ merchantRouter.post("/signup", async (req, res) => {
 });
 
 const signinBody = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   password: z.string(),
 });
 
@@ -65,12 +65,12 @@ merchantRouter.post("/signin", async (req, res) => {
     });
   }
 
-  const { username, password } = data;
+  const { email, password } = data;
 
   try {
     const merchant = await prismaclient.merchant.findFirst({
       where: {
-        username,
+        email,
       },
     });
 

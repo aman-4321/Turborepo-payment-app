@@ -10,7 +10,7 @@ const prismaclient = new PrismaClient();
 export const userRouter = Router();
 
 const signupBody = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   name: z.string(),
   password: z.string().min(6),
 });
@@ -22,7 +22,7 @@ userRouter.post("/signup", async (req, res) => {
       message: "Invalid input",
     });
   }
-  const { username, password, name } = data;
+  const { email, password, name } = data;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,7 +30,7 @@ userRouter.post("/signup", async (req, res) => {
     await prismaclient.$transaction(async (tx) => {
       const user = await prismaclient.user.create({
         data: {
-          username,
+          email,
           password: hashedPassword,
           name,
         },
@@ -52,7 +52,7 @@ userRouter.post("/signup", async (req, res) => {
 });
 
 const signinBody = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   password: z.string(),
 });
 
@@ -65,12 +65,12 @@ userRouter.post("/signin", async (req, res) => {
     });
   }
 
-  const { username, password } = data;
+  const { email, password } = data;
 
   try {
     const user = await prismaclient.user.findFirst({
       where: {
-        username,
+        email,
         password,
       },
     });
@@ -101,7 +101,7 @@ userRouter.post("/signin", async (req, res) => {
 });
 
 const onrampSchema = z.object({
-  userId: z.string(),
+  userId: z.number(),
   amount: z.number().positive(),
 });
 
@@ -138,7 +138,7 @@ userRouter.post("/onramp", async (req, res) => {
 });
 
 const transferSchema = z.object({
-  merchantId: z.string(),
+  merchantId: z.number(),
   amount: z.number().positive(),
 });
 
@@ -150,7 +150,7 @@ userRouter.post("/transfer", userAuthMiddleware, async (req, res) => {
     });
   }
   const { merchantId, amount } = data;
-  const userId = req.id;
+  const userId = Number(req.id);
 
   try {
     const paymentDone = await prismaclient.$transaction(async (tx) => {
