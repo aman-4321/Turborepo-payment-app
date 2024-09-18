@@ -52,4 +52,3 @@ export async function p2pTransfer(to: string, amount: number) {
     });
   });
 }
-
