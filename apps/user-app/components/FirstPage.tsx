@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const FirstSection = () => {
   return (
-    <div className="pl-32 pr-[25rem] w-full">
+    <div className="pl-32 pr-[25rem] w-full pt-10">
       <div className="bg-blue-100 h-[56rem] rounded-[2rem]">
         <div className="pl-48 font-medium text-8xl pt-40">
           <div>Fast, safe,</div>
@@ -13,7 +13,7 @@ const FirstSection = () => {
           <div>Pay, get paid, grow a business, and more. Join</div>
           <div>the tens of millions of people on Venmo.</div>
         </div>
-        <div className="pl-[50rem] absolute pr-32 top-80">
+        <div className="pl-[50rem] absolute pr-32 top-80 transition-transform hover:scale-105 ease-in-out duration-300">
           <Image
             src="/home.png"
             alt="first-section"
@@ -21,7 +21,7 @@ const FirstSection = () => {
             height={90}
           ></Image>
         </div>
-        <button className="ml-48 mt-20 bg-blue-500 text-white px-14 py-4 rounded-[20rem] font-bold text-xl">
+        <button className="ml-48 mt-20 bg-blue-500 text-white px-14 py-4 rounded-[20rem] font-bold text-xl shadow-2xl shadow-purple-400">
           Get Paytm
         </button>
       </div>

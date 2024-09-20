@@ -36,7 +36,7 @@ const NavItem = ({ text }: { text: string }) => {
 export const Appbar = () => {
   const router = useRouter();
   return (
-    <div className="flex justify-between p-4 bg-white pt-8 pb-8 sticky top-0 z-50">
+    <div className="flex justify-between p-4 bg-white pt-8 pb-6 sticky top-0 z-50 drop-shadow-lg">
       <div className="flex items-center">
         <div
           onClick={() => {
@@ -50,7 +50,7 @@ export const Appbar = () => {
           <NavItem text="Send & Receive" />
           <NavItem text="Pay with Paytm" />
           <NavItem text="Paytm for merchant" />
-          <div className="font-medium pl-52">Log in</div>
+          <div className="font-medium pl-52 cursor-pointer">Log in</div>
         </nav>
       </div>
     </div>

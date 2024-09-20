@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const SecondPage = () => {
   return (
-    <div className="pt-72 pl-80">
+    <div className="pt-72 pl-80 pb-[55rem]">
       <div className="text-8xl font-medium pb-10">Pay friends</div>
       <div className="text-2xl mb-10">
         <div>
@@ -17,21 +17,22 @@ export const SecondPage = () => {
           Need a gift? Keep it simple and make any payment feel extra special
         </div>
         <div>
-          with Paytm. <a className="text-blue-500">Find out how.</a>
+          with Paytm. <a className="text-blue-600">Find out how.</a>
         </div>
       </div>
 
-      <button className="bg-white text-black px-10 py-4 rounded-[20rem] font-bold text-xl border-black border-2 shadow-lg shadow-blue-500">
+      <button className="bg-white text-black px-10 py-4 rounded-[20rem] font-bold text-xl border-black border-2 shadow-lg shadow-blue-500 transition-transform hover:scale-105 ease-in-out">
         Learn more
       </button>
-      <div className="flex flex-row h-2">
+
+      <div className="flex flex-row h-2 items-start">
         <div>
           <Image
             alt="left"
             src="/homeleft.png"
             width={400}
             height={100}
-            className="mr-40 mt-20"
+            className="mr-40 mt-20 transition-transform hover:scale-105 ease-in-out duration-300"
           ></Image>
         </div>
         <div>
@@ -40,6 +41,7 @@ export const SecondPage = () => {
             src="/homeRight.png"
             width={600}
             height={100}
+            className="relative -top-10 transition-transform hover:scale-105 ease-in-out duration-300"
           ></Image>
         </div>
       </div>
