@@ -50,7 +50,14 @@ export const Appbar = () => {
           <NavItem text="Send & Receive" />
           <NavItem text="Pay with Paytm" />
           <NavItem text="Paytm for merchant" />
-          <div className="font-medium pl-52 cursor-pointer">Log in</div>
+          <div
+            className="font-medium pl-52 cursor-pointer"
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
+            Log in
+          </div>
         </nav>
       </div>
     </div>
